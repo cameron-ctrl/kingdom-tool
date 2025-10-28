@@ -10,9 +10,9 @@ const config: Config = {
         gold: "#FFD166",
         lightBlue: "#A7C7E7",
         offWhite: "#F8F9FB",
-        ink: "#1B2E59",
-      },
-    },
+        ink: "#1B2E59"
+      }
+    }
   },
   plugins: [],
 };

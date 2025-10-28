@@ -7,4 +7,4 @@
 @media (min-width: 768px) { :root { --bar-w: 72%; } }
 @media (min-width: 1024px) { :root { --bar-w: 4.75in; } }
 
-body { background-color: theme('colors.offWhite'); color: theme('colors.ink'); }
+body { background: #F8F9FB; color: #1B2E59; }

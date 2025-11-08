@@ -45,7 +45,7 @@ export default function InvitationPage() {
           href="/response"
           className="inline-block rounded-lg bg-kingdomBlue px-6 py-3 font-b text-white hover:bg-lightBlue hover:text-ink transition-colors"
         >
-          Respond to the King →
+          Pray and learn how to respond →
         </Link>
       </div>
 

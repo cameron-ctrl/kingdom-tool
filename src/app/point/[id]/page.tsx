@@ -60,7 +60,7 @@ export default async function Point({
             href="/response"
             className="mt-3 inline-block rounded-md bg-gold px-5 py-3 font-b text-ink hover:bg-lightBlue"
           >
-            Respond to the King →
+            Pray and learn how to respond →
           </Link>
         </div>
       )}

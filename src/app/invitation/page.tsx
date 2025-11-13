@@ -37,7 +37,7 @@ export default function InvitationPage() {
       {/* Bullets */}
       <ul className="ml-5 list-disc space-y-3 font-b text-[12pt] leading-[1.65] text-ink">
         <li>
-          The Good News isn’t just about going to heaven—it’s about entering life
+          This good news isn’t just about going to heaven—it’s about entering life
           under God’s reign now.
         </li>
         <li>

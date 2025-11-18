@@ -50,7 +50,7 @@ export default function ResponsePage() {
           Kingdom.
           <div className="mt-2">
             <VerseToggle
-              refText="Acts 2:38 (NIV)"
+              refText="Acts 2:38"
               verse={
                 "Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'"
               }
@@ -64,7 +64,7 @@ export default function ResponsePage() {
           Him means walking with others.
           <div className="mt-2">
             <VerseToggle
-              refText="Acts 2:42 (NIV)"
+              refText="Acts 2:42"
               verse={
                 "They devoted themselves to the apostles’ teaching and to fellowship, to the breaking of bread and to prayer."
               }
@@ -77,7 +77,7 @@ export default function ResponsePage() {
           learning to live out His words in everyday life.
           <div className="mt-2">
             <VerseToggle
-              refText="John 14:23 (NIV)"
+              refText="John 14:23"
               verse={
                 "Jesus replied, 'Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.'"
               }
@@ -90,7 +90,7 @@ export default function ResponsePage() {
           the Kingdom and join in God’s work of renewal wherever you go.
           <div className="mt-2">
             <VerseToggle
-              refText="Matthew 28:19–20 (NIV)"
+              refText="Matthew 28:19–20"
               verse={
                 "Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."
               }

@@ -6,17 +6,17 @@ import VerseToggle from "../../components/VerseToggle";
 export default function InvitationPage() {
   const verses = [
     {
-      ref: "Acts 2:38 (NIV)",
+      ref: "Acts 2:38",
       text:
         "Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'",
     },
     {
-      ref: "John 1:12–13 (NIV)",
+      ref: "John 1:12–13",
       text:
         "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God... born of God.",
     },
     {
-      ref: "2 Corinthians 5:14–20 (The Message)",
+      ref: "2 Corinthians 5:14–20",
       text:
         "One man died for everyone. That puts everyone in the same boat. He included everyone in his death so that everyone could also be included in his life, a resurrection life, a far better life than people ever lived on their own.\n\n...Now we look inside, and what we see is that anyone united with the Messiah [Jesus] gets a fresh start, is created new. The old life is gone; a new life emerges! Look at it!\n\nAll this comes from the God who settled the relationship between us and him, and then called us to settle our relationships with each other. God put the world square with himself through the Messiah, giving the world a fresh start by offering forgiveness of sins. God has given us the task of telling everyone what he is doing.\n\nWe’re Christ’s representatives... We’re speaking for Christ himself now: Become friends with God; he’s already a friend with you.",
     },

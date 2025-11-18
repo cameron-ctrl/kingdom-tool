@@ -27,7 +27,7 @@ export const sections: Section[] = [
     ],
     verses: [
       {
-        ref: "Isaiah 9:6–7 (NIV)",
+        ref: "Isaiah 9:6–7",
         text:
           "For to us a child is born, to us a son is given, and the government will be on his shoulders… Of the greatness of his government and peace there will be no end. He will reign… over his kingdom… from that time on and forever.",
       },
@@ -48,12 +48,12 @@ export const sections: Section[] = [
     ],
     verses: [
       {
-        ref: "Acts 10:38 (NIV)",
+        ref: "Acts 10:38",
         text:
           "God anointed Jesus of Nazareth with the Holy Spirit and power, and he went around doing good and healing all who were under the power of the devil, because God was with him.",
       },
       {
-        ref: "Colossians 1:13–14 (NIV)",
+        ref: "Colossians 1:13–14",
         text:
           "For he has rescued us from the dominion of darkness and brought us into the kingdom of the Son he loves, in whom we have redemption, the forgiveness of sins.",
       },
@@ -76,12 +76,12 @@ export const sections: Section[] = [
     ],
     verses: [
       {
-        ref: "Acts 1:8 (NIV)",
+        ref: "Acts 1:8",
         text:
           "…you will receive power when the Holy Spirit comes on you; and you will be my witnesses…",
       },
       {
-        ref: "John 14:12–14 (NIV)",
+        ref: "John 14:12–14",
         text:
           "Very truly I tell you, whoever believes in me will do the works I have been doing… and I will do whatever you ask in my name, so that the Father may be glorified in the Son.",
       },
@@ -104,17 +104,17 @@ export const sections: Section[] = [
     ],
     verses: [
       {
-        ref: "Revelation 21:4–5 (NIV)",
+        ref: "Revelation 21:4–5",
         text:
           "‘He will wipe every tear from their eyes. There will be no more death’ or mourning or crying or pain… He who was seated on the throne said, ‘I am making everything new!’",
       },
       {
-        ref: "Romans 8:18–21 (NIV)",
+        ref: "Romans 8:18–21",
         text:
           "…creation itself will be liberated from its bondage to decay and brought into the freedom and glory of the children of God.",
       },
       {
-        ref: "Acts 3:21 (NIV)",
+        ref: "Acts 3:21",
         text:
           "He must remain in heaven until the time comes for God to restore everything, as he promised long ago through his holy prophets.",
       },

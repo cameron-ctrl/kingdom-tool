@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --bar-w: 4.25in; }
+h1,h2,h3 { letter-spacing: .2px; }

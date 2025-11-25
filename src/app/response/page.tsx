@@ -81,7 +81,7 @@ export default function ResponsePage() {
             })
           }
         >
-          I recommitted my like to King Jesus.
+          I recommitted my life to King Jesus.
         </button>
 
         <button

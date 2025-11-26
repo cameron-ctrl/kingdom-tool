@@ -25,12 +25,11 @@ if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
 // Set up JWT auth
 const jwtClient =
   SERVICE_ACCOUNT_EMAIL && PRIVATE_KEY
-    ? new google.auth.JWT(
-        SERVICE_ACCOUNT_EMAIL,
-        undefined,
-        PRIVATE_KEY,
-        ['https://www.googleapis.com/auth/spreadsheets']
-      )
+    ? new google.auth.JWT({
+        email: SERVICE_ACCOUNT_EMAIL,
+        key: PRIVATE_KEY,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      })
     : null;
 
 // Sheets client

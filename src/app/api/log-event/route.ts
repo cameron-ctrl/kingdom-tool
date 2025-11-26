@@ -1,147 +1,134 @@
 // src/app/api/log-event/route.ts
-import { NextRequest, NextResponse } from "next/server";
-import { google } from "googleapis";
 
-export const runtime = "nodejs";
+import { NextRequest, NextResponse } from 'next/server';
+import { google } from 'googleapis';
+import {
+  getSessionIdFromCookiesOrNew,
+  SESSION_COOKIE_NAME,
+} from '@/lib/session';
+
+// Ensure Node runtime for googleapis
+export const runtime = 'nodejs';
 
 const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const SERVICE_ACCOUNT_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
-  ? process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, "\n")
-  : undefined;
+const RAW_PRIVATE_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
-// Top-level debug so we can see env status once on startup
-console.log("[DEBUG_ENV_TOP]", {
-  hasId: !!SPREADSHEET_ID,
-  hasEmail: !!SERVICE_ACCOUNT_EMAIL,
-  hasKey: !!SERVICE_ACCOUNT_KEY,
-  keyPreview: SERVICE_ACCOUNT_KEY?.slice(0, 30),
-});
+// Normalize private key line breaks (Vercel stores them with \n)
+const PRIVATE_KEY = RAW_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !SERVICE_ACCOUNT_KEY) {
-  console.warn(
-    "[log-event] Google Sheets env vars not fully set; will only log to console."
-  );
+if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
+  // This will show up in Vercel logs if misconfigured
+  console.error('Missing Google Sheets environment variables.');
 }
 
-let sheetsClient: ReturnType<typeof google.sheets> | null = null;
+// Set up JWT auth
+const jwtClient =
+  SERVICE_ACCOUNT_EMAIL && PRIVATE_KEY
+    ? new google.auth.JWT(
+        SERVICE_ACCOUNT_EMAIL,
+        undefined,
+        PRIVATE_KEY,
+        ['https://www.googleapis.com/auth/spreadsheets']
+      )
+    : null;
 
-async function getSheetsClient() {
-  if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !SERVICE_ACCOUNT_KEY) {
-    console.warn("[log-event] Missing Sheets env vars at runtime", {
-      hasId: !!SPREADSHEET_ID,
-      hasEmail: !!SERVICE_ACCOUNT_EMAIL,
-      hasKey: !!SERVICE_ACCOUNT_KEY,
-    });
-    return null;
-  }
+// Sheets client
+const sheets = jwtClient
+  ? google.sheets({ version: 'v4', auth: jwtClient })
+  : null;
 
-  if (sheetsClient) return sheetsClient;
-
-  // Use GoogleAuth with explicit credentials instead of JWT + authorize()
-  const auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: SERVICE_ACCOUNT_EMAIL,
-      private_key: SERVICE_ACCOUNT_KEY,
-    },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  const sheets = google.sheets({ version: "v4", auth });
-  sheetsClient = sheets;
-  return sheetsClient;
-}
+type LogEventArgs = {
+  eventType: string;
+  page: string;
+  label: string;
+  value?: string;
+  metadata?: Record<string, unknown>;
+};
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-
-    const {
-      eventType,
-      page,
-      label,
-      value,
-      metadata,
-    }: {
-      eventType?: string;
-      page?: string;
-      label?: string;
-      value?: string;
-      metadata?: Record<string, unknown>;
-    } = body ?? {};
-
-    if (!eventType || !page || !label) {
+    if (!sheets || !jwtClient || !SPREADSHEET_ID) {
+      console.error('Google Sheets client not initialized.');
       return NextResponse.json(
-        { ok: false, error: "Missing required fields" },
+        { error: 'Google Sheets not configured' },
+        { status: 500 }
+      );
+    }
+
+    const body = (await req.json()) as LogEventArgs;
+
+    // Basic validation to avoid junk rows
+    if (!body.eventType || !body.page || !body.label) {
+      return NextResponse.json(
+        { error: 'Invalid payload' },
         { status: 400 }
       );
     }
 
+    // SESSION HANDLING
+    const cookieHeader = req.headers.get('cookie');
+    const { sessionId, isNew } = await getSessionIdFromCookiesOrNew(
+      cookieHeader
+    );
+
     const timestamp = new Date().toISOString();
-    const pagePath = page;
-    const referer = req.headers.get("referer") ?? "";
-    const userAgent = req.headers.get("user-agent") ?? "";
 
-    // We'll fill these in more later if needed
-    const sessionId = "";
-    const utm_source =
-      (metadata && (metadata["utm_source"] as string | undefined)) ?? "";
-    const utm_medium =
-      (metadata && (metadata["utm_medium"] as string | undefined)) ?? "";
-
-    const eventForLog = {
-      timestamp,
-      eventType,
-      eventLabel: label,
-      value: value ?? "",
-      pagePath,
-      referer,
-      userAgent,
+    // Console logging (kept as you described)
+    console.log('Analytics event', {
+      ...body,
       sessionId,
-      utm_source,
-      utm_medium,
-    };
+      timestamp,
+    });
 
-    // Always log to server console for debugging
-    console.log("[EVENT]", eventForLog);
+    // Prepare the row to append.
+    // You can match these columns to your sheet:
+    // A: timestamp
+    // B: sessionId
+    // C: eventType
+    // D: page
+    // E: label
+    // F: value
+    // G: metadata (JSON)
+    const row = [
+      timestamp,
+      sessionId,
+      body.eventType,
+      body.page,
+      body.label,
+      body.value ?? '',
+      body.metadata ? JSON.stringify(body.metadata) : '',
+    ];
 
-    // Try to write to Google Sheets if configured
-    const sheets = await getSheetsClient();
+    await jwtClient.authorize(); // ensure token is fresh
 
-    if (sheets && SPREADSHEET_ID) {
-      try {
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: SPREADSHEET_ID,
-          range: "Sheet1!A:J", // change "Sheet1" if your tab is named differently
-          valueInputOption: "RAW",
-          requestBody: {
-            values: [
-              [
-                timestamp,
-                eventType,
-                label,
-                value ?? "",
-                pagePath,
-                referer,
-                userAgent,
-                sessionId,
-                utm_source,
-                utm_medium,
-              ],
-            ],
-          },
-        });
-      } catch (sheetError) {
-        console.error("[EVENT_SHEETS_ERROR]", sheetError);
-        // We don't throw here; we still return ok so the UX isn't affected.
-      }
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Sheet1!A:G', // <-- update to your actual sheet name/range
+      valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
+      requestBody: {
+        values: [row],
+      },
+    });
+
+    // Build response and set the session cookie if this is a new session
+    const res = NextResponse.json({ ok: true });
+
+    if (isNew) {
+      res.cookies.set(SESSION_COOKIE_NAME, sessionId, {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 365, // 1 year
+      });
     }
 
-    return NextResponse.json({ ok: true });
+    return res;
   } catch (err) {
-    console.error("[EVENT_ERROR]", err);
+    console.error('Error in /api/log-event', err);
     return NextResponse.json(
-      { ok: false, error: "Invalid JSON or server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

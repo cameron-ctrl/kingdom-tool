@@ -1,15 +1,7 @@
 // src/lib/session.ts
-import { cookies } from "next/headers";
-import { randomUUID } from "crypto";
+// We are not currently using server-side session IDs.
+// This stub exists only so any imports don't break the build.
 
-export function getSessionId() {
-  const cookieStore = cookies();
-  let id = cookieStore.get("sessionId")?.value;
-
-  if (!id) {
-    id = randomUUID();
-    cookieStore.set("sessionId", id, { path: "/", httpOnly: false });
-  }
-
-  return id;
+export async function getSessionId(): Promise<string> {
+  return "";
 }

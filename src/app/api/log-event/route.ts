@@ -14,8 +14,14 @@ const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const RAW_PRIVATE_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
-// Normalize private key line breaks (Vercel stores them with \n)
-const PRIVATE_KEY = RAW_PRIVATE_KEY?.replace(/\\n/g, '\n');
+// Handle both cases:
+// - Stored with literal "\n" sequences
+// - Stored as real multi-line text
+const PRIVATE_KEY = RAW_PRIVATE_KEY
+  ? RAW_PRIVATE_KEY.includes('\\n')
+    ? RAW_PRIVATE_KEY.replace(/\\n/g, '\n')
+    : RAW_PRIVATE_KEY
+  : undefined;
 
 if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
   // This will show up in Vercel logs if misconfigured
@@ -81,7 +87,6 @@ export async function POST(req: NextRequest) {
     });
 
     // Prepare the row to append.
-    // You can match these columns to your sheet:
     // A: timestamp
     // B: sessionId
     // C: eventType

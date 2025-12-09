@@ -53,10 +53,10 @@ export default function RootLayout({
           sizes="512x512"
           href="/icon-512.png"
         />
-        <meta name="theme-color" content="#F6EAD0" />
+        <meta name="theme-color" content="#FFFFFF" />
       </head>
       <body
-        className={`${poppins.variable} ${lato.variable} ${playfair.variable} bg-offWhite text-kingdomBlue`}
+        className={`${poppins.variable} ${lato.variable} ${playfair.variable} bg-white text-kingdomBlue`}
       >
         <main className="mx-auto max-w-[760px] px-4 py-8">
           <PageFade>{children}</PageFade>

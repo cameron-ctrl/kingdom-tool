@@ -84,23 +84,25 @@ export default function Point({
         </p>
       )}
 
+      {/* Bullets */}
       <ul className="ml-5 list-disc space-y-3 font-b text-[12pt] leading-[1.65] text-ink">
         {section.bullets.map((b, i) => (
           <li key={i}>{b}</li>
         ))}
       </ul>
 
+      {/* Tagline BEFORE Bible passages */}
+      {section.tagline && (
+        <p className="mt-6 mb-5 italic text-ink">{section.tagline}</p>
+      )}
+
+      {/* Bible passages (verse toggles) */}
       {section.verses && section.verses.length > 0 && (
         <div className="mt-3 border-t border-ink/10 pt-3">
           {section.verses.map((v, i) => (
             <VerseToggle key={i} refText={v.ref} verse={v.text} />
           ))}
         </div>
-      )}
-
-      {/* Tagline with clean spacing */}
-      {section.tagline && (
-        <p className="mt-6 italic text-ink">{section.tagline}</p>
       )}
 
       {/* Nav */}

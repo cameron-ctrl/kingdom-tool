@@ -37,7 +37,7 @@ export const sections: Section[] = [
           "I’m setting you up as a light for the nations so that my salvation becomes global!”",
       },
     ],
-    tagline: "➡️ God’s promise ignites hope: His Kingdom will come.",
+    tagline: "God’s promise ignites hope: His Kingdom will come.",
     icon: "🌍",
   },
 
@@ -63,7 +63,7 @@ export const sections: Section[] = [
           "For he has rescued us from the dominion of darkness and brought us into the kingdom of the Son he loves, in whom we have redemption, the forgiveness of sins.",
       },
     ],
-    tagline: "➡️ The Kingdom has come through Jesus—and freedom is at hand.",
+    tagline: "The Kingdom has come through Jesus—and freedom is at hand.",
     icon: "✝️",
   },
 
@@ -90,8 +90,13 @@ export const sections: Section[] = [
         text:
           "Very truly I tell you, whoever believes in me will do the works I have been doing… and I will do whatever you ask in my name, so that the Father may be glorified in the Son.",
       },
+      {
+        ref: "2 Corinthians 3:18",
+        text:
+          "And the Lord — who is the Spirit — makes us more and more like him as we are changed into his glorious image.",
+      },
     ],
-    tagline: "➡️ The Kingdom is advancing—by His Spirit, through His people.",
+    tagline: "The Kingdom is advancing—by His Spirit, through His people.",
     icon: "🔥",
   },
 
@@ -124,7 +129,7 @@ export const sections: Section[] = [
       },
     ],
     tagline:
-      "➡️ The future Kingdom is not just our destination—we can share the King’s renewal now.",
+      "The future Kingdom is not just our destination—we can share the King’s renewal now.",
     icon: "🌅",
   },
 ];

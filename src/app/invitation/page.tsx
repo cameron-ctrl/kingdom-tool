@@ -68,17 +68,17 @@ export default function InvitationPage() {
         </li>
       </ul>
 
+      {/* Tagline BEFORE verses */}
+      <p className="mt-6 mb-5 italic text-ink">
+        Come, follow the King—and live in His Kingdom.
+      </p>
+
       {/* Verses as dropdowns */}
       <div className="mt-4 border-t border-ink/10 pt-3 font-b text-[12pt] leading-[1.65] text-ink space-y-2">
         {verses.map((v, i) => (
           <VerseToggle key={i} refText={v.ref} verse={v.text} />
         ))}
       </div>
-
-      {/* Tagline with clean spacing */}
-      <p className="mt-6 italic text-ink">
-        ➡️ Come, follow the King—and live in His Kingdom.
-      </p>
 
       {/* CTA */}
       <div className="mt-8 rounded-md bg-[#EAF2FA] p-4 text-center">

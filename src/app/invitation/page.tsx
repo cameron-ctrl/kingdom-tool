@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import SectionHeader from "../../components/SectionHeader";
 import VerseToggle from "../../components/VerseToggle";
+import ShareButton from "../../components/ShareButton";
 import { logEvent } from "../../lib/logEvent";
 
 export default function InvitationPage() {
@@ -38,9 +39,18 @@ export default function InvitationPage() {
 
   return (
     <article className="mt-4">
-      <SectionHeader icon="👑">
-        5. What should I do? — Jesus is inviting you.
-      </SectionHeader>
+      {/* Header + Share button row */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <SectionHeader icon="👑">
+            5. What should I do? — Jesus is inviting you.
+          </SectionHeader>
+        </div>
+
+        <div className="mt-2 shrink-0">
+          <ShareButton label="Share App" />
+        </div>
+      </div>
 
       {/* Intro paragraph */}
       <p className="mb-4 font-b text-[12pt] leading-[1.65] text-ink">
@@ -51,12 +61,12 @@ export default function InvitationPage() {
       {/* Bullets */}
       <ul className="ml-5 list-disc space-y-3 font-b text-[12pt] leading-[1.65] text-ink">
         <li>
-          This good news isn’t just about waiting until you die to experience God's goodness—it’s
-          about entering life under God’s reign now.
+          This good news isn’t just about waiting until you die to experience
+          God's goodness—it’s about entering life under God’s reign now.
         </li>
         <li>
-          We enter His Kingdom not by earning, but by receiving his forgiveness and by trusting and surrendering
-          to King Jesus.
+          We enter His Kingdom not by earning, but by receiving his forgiveness
+          and by trusting and surrendering to King Jesus.
         </li>
         <li>
           Surrendering to Jesus means becoming His disciple—learning His ways,

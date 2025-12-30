@@ -6,6 +6,7 @@ import Link from "next/link";
 import { sections } from "../../../content/tool";
 import SectionHeader from "../../../components/SectionHeader";
 import VerseToggle from "../../../components/VerseToggle";
+import ShareButton from "../../../components/ShareButton";
 import { logEvent } from "../../../lib/logEvent";
 
 type ParamsValue = { id: string };
@@ -73,9 +74,19 @@ export default function Point({
 
   return (
     <article className="mt-4">
-      <SectionHeader icon={section.icon}>
-        {section.id}. {section.title}
-      </SectionHeader>
+      {/* Header + Share button in the same row (fixes awkward spacing) */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <SectionHeader icon={section.icon}>
+            {section.id}. {section.title}
+          </SectionHeader>
+        </div>
+
+        {/* Share button (always shares home URL) */}
+        <div className="mt-2 shrink-0">
+          <ShareButton label="Share App" />
+        </div>
+      </div>
 
       {/* Intro big idea text */}
       {section.bigIdea && (

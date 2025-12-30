@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import VerseToggle from "../../components/VerseToggle";
+import ShareButton from "../../components/ShareButton";
 import { logEvent } from "../../lib/logEvent";
 
 export default function ResponsePage() {
@@ -33,30 +34,31 @@ export default function ResponsePage() {
       {/* Prayer box */}
       <div className="rounded-md bg-[#EAF2FA] p-4">
         <p>
-          Father, thank You for making a way for me to live and participate in your kingdom. King Jesus, I surrender to Your loving reign. Teach me to walk in Your
-          ways. I put my trust in Your victory over sin, death, and darkness.
-          Thank You for forgiving my sins. Holy Spirit, fill me, change me, and
-          empower me. Use my life to bring Your renewal until You make all
-          things new. Amen.
+          Father, thank You for making a way for me to live and participate in your kingdom.
+          King Jesus, I surrender to Your loving reign. Teach me to walk in Your ways.
+          I put my trust in Your victory over sin, death, and darkness.
+          Thank You for forgiving my sins.
+          Holy Spirit, fill me, change me, and empower me.
+          Use my life to bring Your renewal until You make all things new. Amen.
         </p>
       </div>
 
       {/* Text below the prayer */}
       <p>If so, you're ready to talk to Him — pray this prayer out loud.</p>
 
-      {/* 🔧 Gray divider: just make it explicitly full width inside the article */}
+      {/* Divider */}
       <div className="mt-6 w-full border-t border-ink/10"></div>
 
-      {/* Feedback intro line */}
+      {/* Feedback intro */}
       <p className="mt-6 text-ink">
         Everyone’s story is different — which of these fits yours today?
       </p>
 
-      {/* Feedback response options */}
+      {/* Feedback buttons */}
       <div className="mt-2 space-y-3">
         <button
           type="button"
-          className="w-full rounded-md border border-kingdomBlue px-4 py-3 text-[11pt] leading-snug font-b text-ink hover:bg-kingdomBlue hover:text-white transition-colors"
+          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
           onClick={() =>
             logEvent({
               eventType: "response_choice",
@@ -71,7 +73,7 @@ export default function ResponsePage() {
 
         <button
           type="button"
-          className="w-full rounded-md border border-gold px-4 py-3 text-[11pt] leading-snug font-b text-ink hover:bg-gold hover:text-ink transition-colors"
+          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
           onClick={() =>
             logEvent({
               eventType: "response_choice",
@@ -86,7 +88,7 @@ export default function ResponsePage() {
 
         <button
           type="button"
-          className="w-full rounded-md border border-gold px-4 py-3 text-[11pt] leading-snug font-b text-ink hover:bg-gold hover:text-ink transition-colors"
+          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
           onClick={() =>
             logEvent({
               eventType: "response_choice",
@@ -100,7 +102,7 @@ export default function ResponsePage() {
         </button>
       </div>
 
-      {/* ░░ SOFT LINK TO FORM WITH TRACKING ░░ */}
+          {/* Feedback form link */}
       <p className="mt-4 text-center text-[11.5pt] text-ink/80">
         Want to share your story?{" "}
         <Link
@@ -122,11 +124,10 @@ export default function ResponsePage() {
       {/* Gold divider */}
       <div className="mx-auto h-[2px] w-[calc(var(--bar-w))] bg-gold" />
 
-      {/* Intro to next steps */}
+      {/* Next steps intro */}
       <p>
-        The Bible shows that when people respond to Jesus’ invitation, it
-        changes how they live. Responding means turning to Him in faith and
-        taking real steps to live under His loving rule and reign.
+        The Bible shows that when people respond to Jesus’ invitation, it changes how they live.
+        Responding means turning to Him in faith and taking real steps to live under His loving rule and reign.
       </p>
 
       <h2 className="font-h text-xl text-kingdomBlue">
@@ -135,42 +136,31 @@ export default function ResponsePage() {
 
       <ul className="list-disc space-y-5 pl-5">
         <li>
-          <strong>Be baptized.</strong> Baptism is how followers of Jesus
-          publicly declare their allegiance to Him and their entrance into His
-          Kingdom.
+          <strong>Be baptized.</strong> Baptism is how followers of Jesus publicly declare their allegiance to Him.
           <div className="mt-2">
             <VerseToggle
               refText="Acts 2:38"
-              verse={
-                "Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'"
-              }
+              verse="Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.'"
             />
           </div>
         </li>
 
         <li>
-          <strong>Join a community of disciples.</strong> The first followers of
-          Jesus shared life, prayer, Scripture, and mission together. Following
-          Him means walking with others. If you know a person or a group of people who love Jesus, connect with them to see how they can help you on your new faith journey.
+          <strong>Join a community of disciples.</strong> Following Jesus means walking with others.
           <div className="mt-2">
             <VerseToggle
               refText="Acts 2:42"
-              verse={
-                "They devoted themselves to the apostles’ teaching and to fellowship, to the breaking of bread and to prayer."
-              }
+              verse="They devoted themselves to the apostles’ teaching and to fellowship, to the breaking of bread and to prayer."
             />
           </div>
         </li>
 
         <li>
-          <strong>Learn and obey Jesus’ teaching.</strong> Disciples grow by
-          learning to live out His words in everyday life.
+          <strong>Learn and obey Jesus’ teaching.</strong>
           <div className="mt-2">
             <VerseToggle
               refText="John 14:23"
-              verse={
-                "Jesus replied, 'Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.'"
-              }
+              verse="Jesus replied, 'Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.'"
             />
           </div>
         </li>
@@ -189,20 +179,23 @@ export default function ResponsePage() {
         </li>
       </ul>
 
-      <div className="mt-10 flex justify-center gap-3">
-        <Link
-          href="/invitation"
-          className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
-        >
-          ← Back
-        </Link>
-        <Link
-          href="/"
-          className="rounded-md bg-kingdomBlue px-6 py-3 font-b text-white hover:bg-ink"
-        >
-          Restart ↺
-        </Link>
-      </div>
+  <div className="mt-10 flex items-center justify-between gap-3">
+  <Link
+    href="/invitation"
+    className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
+  >
+    ← Back
+  </Link>
+
+  <ShareButton label="Share App" />
+
+  <Link
+    href="/"
+    className="rounded-md bg-kingdomBlue px-6 py-3 font-b text-white hover:bg-ink"
+  >
+    Restart ↺
+  </Link>
+</div>
     </article>
   );
 }

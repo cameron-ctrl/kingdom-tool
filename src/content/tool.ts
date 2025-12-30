@@ -34,7 +34,7 @@ export const sections: Section[] = [
       {
         ref: "Isaiah 49:6",
         text:
-          "I’m setting you up as a light for the nations so that my salvation becomes global!”",
+          "I’m setting you up as a light for the nations so that my salvation becomes global.",
       },
     ],
     tagline: "God’s promise ignites hope: His Kingdom will come.",

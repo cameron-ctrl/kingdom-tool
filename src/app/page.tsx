@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { meta } from "../content/tool";
 import { logEvent } from "../lib/logEvent";
+import ShareButton from "../components/ShareButton";
 
 export default function Home() {
   useEffect(() => {
@@ -23,10 +24,18 @@ export default function Home() {
         <h1 className="font-h font-semibold text-[28pt] leading-[1.15] text-kingdomBlue">
           {meta.title}
         </h1>
+
         <p className="mt-2 text-[14pt] leading-snug text-ink/85">
           {meta.subtitle}
         </p>
+
         <div className="mx-auto mt-3 h-[2px] w-[calc(var(--bar-w))] max-w-full bg-gold" />
+
+        {/* Share button */}
+        <div className="mt-3 flex justify-end">
+          <ShareButton label="Share App" />
+        </div>
+
         <Link
           href="/point/1"
           className="mt-6 inline-block rounded-lg bg-kingdomBlue px-6 py-3 font-b text-white hover:bg-ink"

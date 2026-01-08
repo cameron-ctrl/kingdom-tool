@@ -49,9 +49,7 @@ export default function Point({
   }, [resolvedParams]);
 
   // While params are resolving, render nothing (very quick)
-  if (!resolvedParams) {
-    return null;
-  }
+  if (!resolvedParams) return null;
 
   const num = Number(resolvedParams.id);
   const section = Number.isInteger(num) ? sections[num - 1] : undefined;
@@ -74,19 +72,9 @@ export default function Point({
 
   return (
     <article className="mt-4">
-      {/* Header + Share button in the same row (fixes awkward spacing) */}
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1">
-          <SectionHeader icon={section.icon}>
-            {section.id}. {section.title}
-          </SectionHeader>
-        </div>
-
-        {/* Share button (always shares home URL) */}
-        <div className="mt-2 shrink-0">
-          <ShareButton label="Share App" />
-        </div>
-      </div>
+      <SectionHeader icon={section.icon}>
+        {section.id}. {section.title}
+      </SectionHeader>
 
       {/* Intro big idea text */}
       {section.bigIdea && (
@@ -116,30 +104,36 @@ export default function Point({
         </div>
       )}
 
-      {/* Nav */}
-      <div className="mt-6 flex items-center justify-between">
-        <Link
-          className="underline underline-offset-4"
-          href={num === 1 ? "/" : `/point/${num - 1}`}
-        >
-          ← Back
-        </Link>
+      {/* Bottom actions: Nav first, then share centered underneath */}
+      <div className="mt-8">
+        <div className="flex items-center justify-between">
+          <Link
+            className="underline underline-offset-4"
+            href={num === 1 ? "/" : `/point/${num - 1}`}
+          >
+            ← Back
+          </Link>
 
-        {isLastPoint ? (
-          <Link
-            className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
-            href="/invitation"
-          >
-            Next →
-          </Link>
-        ) : (
-          <Link
-            className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
-            href={`/point/${num + 1}`}
-          >
-            Next →
-          </Link>
-        )}
+          {isLastPoint ? (
+            <Link
+              className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
+              href="/invitation"
+            >
+              Next →
+            </Link>
+          ) : (
+            <Link
+              className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
+              href={`/point/${num + 1}`}
+            >
+              Next →
+            </Link>
+          )}
+        </div>
+
+        <div className="mt-4 flex justify-center">
+          <ShareButton label="Share App" />
+        </div>
       </div>
     </article>
   );

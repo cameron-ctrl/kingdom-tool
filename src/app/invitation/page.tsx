@@ -39,18 +39,9 @@ export default function InvitationPage() {
 
   return (
     <article className="mt-4">
-      {/* Header + Share button row */}
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1">
-          <SectionHeader icon="👑">
-            5. What should I do? — Jesus is inviting you.
-          </SectionHeader>
-        </div>
-
-        <div className="mt-2 shrink-0">
-          <ShareButton label="Share App" />
-        </div>
-      </div>
+      <SectionHeader icon="👑">
+        5. What should I do? — Jesus is inviting you.
+      </SectionHeader>
 
       {/* Intro paragraph */}
       <p className="mb-4 font-b text-[12pt] leading-[1.65] text-ink">
@@ -104,18 +95,24 @@ export default function InvitationPage() {
         </Link>
       </div>
 
-      {/* Back / Restart */}
-      <div className="mt-6 flex items-center justify-between">
-        <Link className="underline underline-offset-4" href="/point/4">
-          ← Back
-        </Link>
+      {/* Bottom actions: Back / Restart first, then share centered underneath */}
+      <div className="mt-8">
+        <div className="flex items-center justify-between">
+          <Link className="underline underline-offset-4" href="/point/4">
+            ← Back
+          </Link>
 
-        <Link
-          href="/"
-          className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
-        >
-          Restart ↺
-        </Link>
+          <Link
+            href="/"
+            className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
+          >
+            Restart ↺
+          </Link>
+        </div>
+
+        <div className="mt-4 flex justify-center">
+          <ShareButton label="Share App" />
+        </div>
       </div>
     </article>
   );

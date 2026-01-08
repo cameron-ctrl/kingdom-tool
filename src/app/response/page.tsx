@@ -1,11 +1,11 @@
 // src/app/response/page.tsx
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import VerseToggle from "../../components/VerseToggle";
 import ShareButton from "../../components/ShareButton";
 import { logEvent } from "../../lib/logEvent";
+import { useEffect, useState } from "react";
 
 export default function ResponsePage() {
   // Log page view once when the page loads
@@ -18,6 +18,10 @@ export default function ResponsePage() {
       });
     }
   }, []);
+
+  const [selectedResponse, setSelectedResponse] = useState<
+    "first_time_decision" | "renewed_commitment" | "still_exploring" | null
+  >(null);
 
   return (
     <article className="mx-auto mt-8 max-w-3xl space-y-8 font-b text-[12pt] leading-[1.65] text-ink">
@@ -49,77 +53,99 @@ export default function ResponsePage() {
       {/* Divider */}
       <div className="mt-6 w-full border-t border-ink/10"></div>
 
-      {/* Feedback intro */}
+            {/* Feedback intro */}
       <p className="mt-6 text-ink">
         Everyone’s story is different — which of these fits yours today?
       </p>
 
+      {/* Confirmation message */}
+      {selectedResponse && (
+        <p className="mt-3 rounded-md bg-[#EAF2FA] px-4 py-3 text-center text-[11.5pt] leading-snug text-ink shadow-sm">
+          Thank you — your response was received.
+        </p>
+      )}
+
       {/* Feedback buttons */}
-      <div className="mt-2 space-y-3">
+      <div className="mt-3 space-y-3">
         <button
           type="button"
-          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
-          onClick={() =>
+          className={`w-full rounded-md border border-gold px-4 py-4 text-[11pt] leading-snug font-b text-ink transition-all
+            bg-gold shadow-md active:scale-[0.99] hover:shadow-lg
+            ${selectedResponse && selectedResponse !== "first_time_decision" ? "opacity-70" : ""}
+            ${selectedResponse === "first_time_decision" ? "ring-2 ring-kingdomBlue/30" : ""}
+          `}
+          onClick={() => {
+            setSelectedResponse("first_time_decision");
             logEvent({
               eventType: "response_choice",
               page: "/response",
               label: "response_button",
               value: "first_time_decision",
-            })
-          }
+            });
+          }}
         >
           I surrendered to Jesus as my King for the first time.
         </button>
 
         <button
           type="button"
-          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
-          onClick={() =>
+          className={`w-full rounded-md border border-gold px-4 py-4 text-[11pt] leading-snug font-b text-ink transition-all
+            bg-gold shadow-md active:scale-[0.99] hover:shadow-lg
+            ${selectedResponse && selectedResponse !== "renewed_commitment" ? "opacity-70" : ""}
+            ${selectedResponse === "renewed_commitment" ? "ring-2 ring-kingdomBlue/30" : ""}
+          `}
+          onClick={() => {
+            setSelectedResponse("renewed_commitment");
             logEvent({
               eventType: "response_choice",
               page: "/response",
               label: "response_button",
               value: "renewed_commitment",
-            })
-          }
+            });
+          }}
         >
           I recommitted my life to King Jesus.
         </button>
 
         <button
           type="button"
-          className="w-full rounded-md bg-[#F6EAD0] border border-gold px-4 py-4 text-[11p] leading-snug font-b text-ink shadow-sm hover:bg-gold hover:shadow-md transition-all"
-          onClick={() =>
+          className={`w-full rounded-md border border-gold px-4 py-4 text-[11pt] leading-snug font-b text-ink transition-all
+            bg-gold shadow-md active:scale-[0.99] hover:shadow-lg
+            ${selectedResponse && selectedResponse !== "still_exploring" ? "opacity-70" : ""}
+            ${selectedResponse === "still_exploring" ? "ring-2 ring-kingdomBlue/30" : ""}
+          `}
+          onClick={() => {
+            setSelectedResponse("still_exploring");
             logEvent({
               eventType: "response_choice",
               page: "/response",
               label: "response_button",
               value: "still_exploring",
-            })
-          }
+            });
+          }}
         >
           I’m still undecided.
         </button>
       </div>
 
-          {/* Feedback form link */}
-      <p className="mt-4 text-center text-[11.5pt] text-ink/80">
-        Want to share your story?{" "}
-        <Link
-          href="https://forms.gle/csrRWTEZNT847Qky7"
-          target="_blank"
-          className="underline underline-offset-4 text-kingdomBlue hover:text-ink"
-          onClick={() =>
-            logEvent({
-              eventType: "link_click",
-              page: "/response",
-              label: "feedback_form_link",
-            })
-          }
-        >
-          Tap here.
-        </Link>
-      </p>
+{/* Feedback form link */}
+<p className="mt-4 text-center text-[11.5pt] text-ink/80">
+  Want to share your story?{" "}
+  <Link
+    href="https://forms.gle/csrRWTEZNT847Qky7"
+    target="_blank"
+    className="underline underline-offset-4 text-kingdomBlue hover:text-ink"
+    onClick={() =>
+      logEvent({
+        eventType: "link_click",
+        page: "/response",
+        label: "feedback_form_link",
+      })
+    }
+  >
+    Tap here.
+  </Link>
+</p>
 
       {/* Gold divider */}
       <div className="mx-auto h-[2px] w-[calc(var(--bar-w))] bg-gold" />
@@ -179,23 +205,27 @@ export default function ResponsePage() {
         </li>
       </ul>
 
-  <div className="mt-10 flex items-center justify-between gap-3">
-  <Link
-    href="/invitation"
-    className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
-  >
-    ← Back
-  </Link>
+  <div className="mt-8">
+  <div className="flex items-center justify-between">
+    <Link
+      href="/invitation"
+      className="underline underline-offset-4"
+    >
+      ← Back
+    </Link>
 
-  <ShareButton label="Share App" />
+    <Link
+      href="/"
+      className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
+    >
+      Restart ↺
+    </Link>
+  </div>
 
-  <Link
-    href="/"
-    className="rounded-md bg-kingdomBlue px-6 py-3 font-b text-white hover:bg-ink"
-  >
-    Restart ↺
-  </Link>
-</div>
+  <div className="mt-4 flex justify-center">
+    <ShareButton label="Share App" />
+  </div>
+            </div>
     </article>
   );
 }

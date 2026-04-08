@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import SectionHeader from "../../components/SectionHeader";
 import VerseToggle from "../../components/VerseToggle";
-import ShareButton from "../../components/ShareButton";
+import ShareQRButton from "../../components/ShareQRButton";
 import { logEvent } from "../../lib/logEvent";
 
 export default function InvitationPage() {
@@ -111,7 +111,7 @@ export default function InvitationPage() {
         </div>
 
         <div className="mt-4 flex justify-center">
-          <ShareButton label="Share App" />
+          <ShareQRButton label="Share App" />
         </div>
       </div>
     </article>

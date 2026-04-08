@@ -6,7 +6,7 @@ import Link from "next/link";
 import { sections } from "../../../content/tool";
 import SectionHeader from "../../../components/SectionHeader";
 import VerseToggle from "../../../components/VerseToggle";
-import ShareButton from "../../../components/ShareButton";
+import ShareQRButton from "../../../components/ShareQRButton";
 import { logEvent } from "../../../lib/logEvent";
 
 type ParamsValue = { id: string };
@@ -132,7 +132,7 @@ export default function Point({
         </div>
 
         <div className="mt-4 flex justify-center">
-          <ShareButton label="Share App" />
+          <ShareQRButton label="Share App" />
         </div>
       </div>
     </article>

@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import VerseToggle from "../../components/VerseToggle";
-import ShareButton from "../../components/ShareButton";
+import ShareQRButton from "../../components/ShareQRButton";
 import { logEvent } from "../../lib/logEvent";
 import { useEffect, useState } from "react";
 
@@ -223,7 +223,7 @@ export default function ResponsePage() {
   </div>
 
   <div className="mt-4 flex justify-center">
-    <ShareButton label="Share App" />
+    <ShareQRButton label="Share App" />
   </div>
             </div>
     </article>

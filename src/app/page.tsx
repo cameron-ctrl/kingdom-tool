@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { meta } from "../content/tool";
 import { logEvent } from "../lib/logEvent";
-import ShareButton from "../components/ShareButton";
+import ShareQRButton from "../components/ShareQRButton";
 
 export default function Home() {
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Home() {
 
         {/* Share button */}
         <div className="mt-3 flex justify-end">
-          <ShareButton label="Share App" />
+          <ShareQRButton label="Share App" />
         </div>
 
         <Link

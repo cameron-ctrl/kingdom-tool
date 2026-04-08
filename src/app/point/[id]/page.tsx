@@ -1,4 +1,3 @@
-// src/app/point/[id]/page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -18,7 +17,6 @@ export default function Point({
 }) {
   const [resolvedParams, setResolvedParams] = useState<ParamsValue | null>(null);
 
-  // Resolve params whether it's a Promise or a plain object
   useEffect(() => {
     let isMounted = true;
 
@@ -37,7 +35,6 @@ export default function Point({
     };
   }, [params]);
 
-  // Fire page view once when params are resolved (so we know the route)
   useEffect(() => {
     if (resolvedParams && typeof window !== "undefined") {
       logEvent({
@@ -48,7 +45,6 @@ export default function Point({
     }
   }, [resolvedParams]);
 
-  // While params are resolving, render nothing (very quick)
   if (!resolvedParams) return null;
 
   const num = Number(resolvedParams.id);
@@ -59,7 +55,7 @@ export default function Point({
       <article className="mt-10 text-center">
         <p className="mb-6 font-b text-ink">That section doesn’t exist.</p>
         <Link
-          className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
+          className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all"
           href="/point/1"
         >
           Go to Point 1
@@ -71,42 +67,46 @@ export default function Point({
   const isLastPoint = num === sections.length;
 
   return (
-    <article className="mt-4">
+    <article className="mt-6 space-y-6">
+
       <SectionHeader icon={section.icon}>
         {section.id}. {section.title}
       </SectionHeader>
 
-      {/* Intro big idea text */}
+      {/* Big Idea */}
       {section.bigIdea && (
-        <p className="mb-4 font-b text-[12pt] leading-[1.65] text-ink">
+        <p className="text-[13pt] leading-[1.6] font-b text-ink">
           {section.bigIdea}
         </p>
       )}
 
       {/* Bullets */}
-      <ul className="ml-5 list-disc space-y-3 font-b text-[12pt] leading-[1.65] text-ink">
+      <ul className="ml-5 list-disc space-y-4 text-[11.5pt] leading-[1.6] font-b text-ink">
         {section.bullets.map((b, i) => (
           <li key={i}>{b}</li>
         ))}
       </ul>
 
-      {/* Tagline BEFORE Bible passages */}
+      {/* Tagline */}
       {section.tagline && (
-        <p className="mt-6 mb-5 italic text-ink">{section.tagline}</p>
+        <p className="mt-6 italic text-[11.5pt] text-ink/80">
+          {section.tagline}
+        </p>
       )}
 
-      {/* Bible passages (verse toggles) */}
+      {/* Verses */}
       {section.verses && section.verses.length > 0 && (
-        <div className="mt-3 border-t border-ink/10 pt-3">
+        <div className="mt-6 border-t border-ink/10 pt-4 space-y-2">
           {section.verses.map((v, i) => (
             <VerseToggle key={i} refText={v.ref} verse={v.text} />
           ))}
         </div>
       )}
 
-      {/* Bottom actions: Nav first, then share centered underneath */}
+      {/* Bottom actions */}
       <div className="mt-8">
         <div className="flex items-center justify-between">
+
           <Link
             className="underline underline-offset-4"
             href={num === 1 ? "/" : `/point/${num - 1}`}
@@ -116,17 +116,17 @@ export default function Point({
 
           {isLastPoint ? (
             <Link
-              className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
+              className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all"
               href="/invitation"
             >
               Next →
             </Link>
           ) : (
             <Link
-              className="rounded-md border border-kingdomBlue px-4 py-2 hover:bg-kingdomBlue hover:text-white"
+              className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all"
               href={`/point/${num + 1}`}
             >
-              Next →
+              Continue →
             </Link>
           )}
         </div>

@@ -4,7 +4,13 @@ import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Share, Copy, QrCode } from "lucide-react";
 
-export default function ShareQRButton({ label = "Share App" }) {
+export default function ShareQRButton({
+  label = "Share App",
+  size = "default",
+}: {
+  label?: string;
+  size?: "default" | "small";
+}) {
   const [open, setOpen] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -33,7 +39,9 @@ export default function ShareQRButton({ label = "Share App" }) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
+        className={`rounded-md border border-kingdomBlue font-b hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all
+          ${size === "small" ? "px-3 py-1.5 text-[10pt]" : "px-4 py-2"}
+        `}
       >
         {label}
       </button>

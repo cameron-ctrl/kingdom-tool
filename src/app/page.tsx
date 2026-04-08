@@ -33,7 +33,7 @@ export default function Home() {
 
         {/* Share button */}
         <div className="mt-3 flex justify-end">
-          <ShareQRButton label="Share App" />
+          <ShareQRButton label="Share App" size="small" />
         </div>
 
         <Link

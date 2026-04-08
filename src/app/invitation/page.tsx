@@ -1,4 +1,3 @@
-// src/app/invitation/page.tsx
 "use client";
 
 import { useEffect } from "react";
@@ -38,19 +37,20 @@ export default function InvitationPage() {
   ];
 
   return (
-    <article className="mt-4">
+    <article className="mt-6 space-y-6">
+
       <SectionHeader icon="👑">
         5. What should I do? — Jesus is inviting you.
       </SectionHeader>
 
-      {/* Intro paragraph */}
-      <p className="mb-4 font-b text-[12pt] leading-[1.65] text-ink">
+      {/* Big Idea */}
+      <p className="text-[13pt] leading-[1.6] font-b text-ink">
         This story isn’t just information about Jesus—it’s an invitation to
         respond to Him in a real and life–changing way.
       </p>
 
       {/* Bullets */}
-      <ul className="ml-5 list-disc space-y-3 font-b text-[12pt] leading-[1.65] text-ink">
+      <ul className="ml-5 list-disc space-y-4 text-[11.5pt] leading-[1.6] font-b text-ink">
         <li>
           This good news isn’t just about waiting until you die to experience
           God's goodness—it’s about entering life under God’s reign now.
@@ -69,33 +69,33 @@ export default function InvitationPage() {
         </li>
       </ul>
 
-      {/* Tagline BEFORE verses */}
-      <p className="mt-6 mb-5 italic text-ink">
+      {/* Tagline (left-aligned, clean) */}
+      <p className="mt-6 italic text-[11.5pt] text-ink/80">
         Come, follow the King—and live in His Kingdom.
       </p>
 
-      {/* Verses as dropdowns */}
-      <div className="mt-4 border-t border-ink/10 pt-3 font-b text-[12pt] leading-[1.65] text-ink space-y-2">
+      {/* Verses */}
+      <div className="mt-6 border-t border-ink/10 pt-4 space-y-2">
         {verses.map((v, i) => (
           <VerseToggle key={i} refText={v.ref} verse={v.text} />
         ))}
       </div>
 
       {/* CTA */}
-      <div className="mt-8 rounded-md bg-[#EAF2FA] p-4 text-center">
-        <p className="mb-2 font-b text-[12pt] leading-[1.65] text-ink">
+      <div className="mt-8 rounded-md bg-[#EAF2FA] p-5 text-center space-y-3">
+        <p className="text-[12pt] leading-[1.6] font-b text-ink">
           You can yield your life to King Jesus right now.
         </p>
 
         <Link
           href="/response"
-          className="mt-3 inline-block rounded-md bg-gold px-6 py-3 font-b text-ink hover:bg-lightBlue"
+          className="inline-block rounded-md bg-gold px-6 py-3 font-b text-ink hover:bg-lightBlue active:scale-[0.98] transition-all"
         >
           Show me how →
         </Link>
       </div>
 
-      {/* Bottom actions: Back / Restart first, then share centered underneath */}
+      {/* Bottom actions */}
       <div className="mt-8">
         <div className="flex items-center justify-between">
           <Link className="underline underline-offset-4" href="/point/4">
@@ -104,7 +104,7 @@ export default function InvitationPage() {
 
           <Link
             href="/"
-            className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white"
+            className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all"
           >
             Restart ↺
           </Link>

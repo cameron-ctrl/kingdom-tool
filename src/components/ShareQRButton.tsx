@@ -39,8 +39,8 @@ export default function ShareQRButton({ label = "Share App" }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-sm rounded-lg bg-white p-5 text-center shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-fadeIn">
+          <div className="w-full max-w-sm rounded-lg bg-white p-5 text-center shadow-xl animate-scaleIn">
 
             {!showQR ? (
               <>
@@ -50,7 +50,6 @@ export default function ShareQRButton({ label = "Share App" }) {
 
                 <div className="mt-4 space-y-3">
 
-                  {/* Share */}
                   <button
                     onClick={handleShare}
                     className="w-full flex items-center justify-center gap-1.5 rounded-md bg-gold px-4 py-3 font-b text-ink hover:bg-lightBlue"
@@ -59,7 +58,6 @@ export default function ShareQRButton({ label = "Share App" }) {
                     Share
                   </button>
 
-                  {/* Copy */}
                   <button
                     onClick={handleCopy}
                     className="w-full flex items-center justify-center gap-1.5 rounded-md border border-kingdomBlue px-4 py-3 font-b hover:bg-kingdomBlue hover:text-white"
@@ -68,7 +66,6 @@ export default function ShareQRButton({ label = "Share App" }) {
                     {copied ? "Copied!" : "Copy Link"}
                   </button>
 
-                  {/* QR */}
                   <button
                     onClick={() => setShowQR(true)}
                     className="w-full flex items-center justify-center gap-1.5 rounded-md border border-kingdomBlue px-4 py-3 font-b hover:bg-kingdomBlue hover:text-white"
@@ -89,7 +86,6 @@ export default function ShareQRButton({ label = "Share App" }) {
                   <QRCodeCanvas value={url} size={200} />
                 </div>
 
-                {/* FIXED BUTTON LAYOUT */}
                 <div className="mt-6 flex items-center justify-between">
                   <button
                     onClick={() => setShowQR(false)}
@@ -111,7 +107,6 @@ export default function ShareQRButton({ label = "Share App" }) {
               </>
             )}
 
-            {/* Only show Close on first screen */}
             {!showQR && (
               <button
                 onClick={() => setOpen(false)}

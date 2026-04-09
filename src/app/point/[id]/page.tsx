@@ -70,7 +70,7 @@ export default function Point({
     <article className="mt-6 space-y-6">
 
       <SectionHeader icon={section.icon}>
-        {section.id}. {section.title}
+          {`${section.id}. ${section.title}`}
       </SectionHeader>
 
       {/* Big Idea */}

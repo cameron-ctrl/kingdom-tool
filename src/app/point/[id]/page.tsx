@@ -126,7 +126,7 @@ export default function Point({
               className="rounded-md border border-kingdomBlue px-4 py-2 font-b hover:bg-kingdomBlue hover:text-white active:scale-[0.98] transition-all"
               href={`/point/${num + 1}`}
             >
-              Continue →
+              Next →
             </Link>
           )}
         </div>

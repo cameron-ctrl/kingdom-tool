@@ -1,8 +1,16 @@
 "use client";
+
 import { useState } from "react";
 
-export default function VerseToggle({ refText, verse }: { refText: string; verse: string }) {
+export default function VerseToggle({
+  refText,
+  verse,
+}: {
+  refText: string;
+  verse: string;
+}) {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="my-3">
       <button
@@ -16,7 +24,10 @@ export default function VerseToggle({ refText, verse }: { refText: string; verse
 
       {open && (
         <div className="mt-2 rounded-md bg-[#EAF2FA] p-3">
-          <p className="font-s italic text-[12pt] leading-relaxed">“{verse}”</p>
+          <p className="font-s italic text-[12pt] leading-relaxed">
+            “{verse}”
+          </p>
+
           <div className="mx-auto mt-3 h-[2px] w-full max-w-[calc(var(--bar-w))] rounded bg-gold" />
         </div>
       )}

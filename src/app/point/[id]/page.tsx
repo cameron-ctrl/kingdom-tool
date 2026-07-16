@@ -96,7 +96,7 @@ export default function Point({
 
       {/* Verses */}
       {section.verses && section.verses.length > 0 && (
-        <div className="mt-6 border-t border-ink/10 pt-4 space-y-2">
+        <div className="mt-6 border-t border-ink/10 pt-4">
           {section.verses.map((v, i) => (
             <VerseToggle key={i} refText={v.ref} verse={v.text} />
           ))}

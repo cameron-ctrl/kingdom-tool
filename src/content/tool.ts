@@ -63,7 +63,7 @@ export const sections: Section[] = [
           "For he has rescued us from the dominion of darkness and brought us into the kingdom of the Son he loves, in whom we have redemption, the forgiveness of sins.",
       },
       {
-        ref: "Colossians 2:13–15",
+        ref: "Colossians 2:13b–15",
         text:
           "God made you alive with Christ, for he forgave all our sins. He canceled the record of the charges against us and took it away by nailing it to the cross. In this way, he disarmed the spiritual rulers and authorities. He shamed them publicly by his victory over them on the cross."
       }
